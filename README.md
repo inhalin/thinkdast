@@ -3,7 +3,11 @@
 - [x] 1장 인터페이스
   - 자바 Interface
   - List Interface
-- [ ] 2장 알고리즘 분석
+- [x] 2장 알고리즘 분석
+  - 선택 정렬 알고리즘 구현
+  - 자바의 List 인터페이스의 구현체로 MyArrayList 구현
+    - remove(), set()의 경우 명시적으로 배열 범위를 검사하지 않고 get()을 이용
+    - 참고 https://docs.oracle.com/javase/8/docs/api/java/util/List.html
 - [ ] 3장 ArrayList 클래스
 - [ ] 4장 LinkedList 클래스
 - [ ] 5장 이중 연결 리스트
