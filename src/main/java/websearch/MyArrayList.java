@@ -27,28 +27,35 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public boolean add(T element) {
         // TODO: add 현재 배열의 크기보다 더 많이 요소를 추가하려고 하면 배열 길이를 두배로 늘린다.
+        /*
+         배열에 빈 공간이 있는 경우, 즉 배열의 크기를 변경하지 않아도 되는 경우에는 실행 시간은 상수시간이다.
+         배열에 빈 공간이 없어서 크기를 변경해야 하는 경우 실행 시간은 배열 크기에 비례한 선형 시간이 된다.
+         요소 n번 추가시 요소 n개 저장, n-2개 복사한다.
+         따라서 총 연산 횟수는 2n - 2 이고, 평균 연산 횟수는 (2n - 2) / n = 2 - (2 / n) 가 된다.
+         n이 커지면 두번째 항은 매우 작아지므로 최종적으로는 2만 남아서 상수 시간이 된다.
+         */
         if (size >= array.length) {
             T[] bigger = (T[]) new Object[array.length * 2];
-            System.arraycopy(array, 0, bigger, 0, array.length);
+            System.arraycopy(array, 0, bigger, 0, array.length); // O(n) 배열의 크기를 변경하는 경우 실행시간은 배열 크기에 비례한다.
             array = bigger;
         }
-        array[size] = element;
+        array[size] = element; // O(1) 배열에 빈 공간이 있으면 상수 시간이다.
         size++;
 
         return true;
     }
 
     @Override
-    public void add(int index, T element) {
+    public void add(int index, T element) { // 최종: O(n)
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         // add the element to get the resizing
-        add(element);
+        add(element); // O(1) 상수 시간
 
         // shift the elements
-        for (int i = size - 1; i > index; i--) {
-            array[i] = array[i - 1];
+        for (int i = size - 1; i > index; i--) { // O(n)
+            array[i] = array[i - 1]; // O(1)
         }
         // put the new one in the right place
         array[index] = element;
@@ -91,18 +98,18 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public T get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+    public T get(int index) { // 최종: O(1)
+        if (index < 0 || index >= size) { // O(1)
+            throw new IndexOutOfBoundsException(); // O(1)
         }
         return array[index];
     }
 
     @Override
-    public int indexOf(Object target) {
+    public int indexOf(Object target) { // 최종: O(n)
         // TODO: indexOf 해당 타깃이 배열에 있으면 타깃의 인덱스를 반환하고, 없으면 -1을 반환한다.
-        for (int i = 0; i < size; i++) {
-            if (equals(target, array[i])) {
+        for (int i = 0; i < size; i++) { // O(n)
+            if (equals(target, array[i])) { // O(1)
                 return i;
             }
         }
@@ -118,10 +125,10 @@ public class MyArrayList<T> implements List<T> {
      * @param element
      */
     private boolean equals(Object target, Object element) {
-        if (target == null) {
-            return element == null;
+        if (target == null) { // O(1)
+            return element == null; // O(1)
         } else {
-            return target.equals(element);
+            return target.equals(element); // O(1)
         }
     }
 
@@ -176,11 +183,11 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public T remove(int index) {
+    public T remove(int index) { // 최종: O(n)
         // TODO: remove 해당 인덱스에 위치한 요소를 제거하고 기존 요소를 반환한다.
-        T removed = get(index);
-        for (int i = index; i < size - 1; i++) {
-            array[i] = array[i + 1];
+        T removed = get(index); // O(1)
+        for (int i = index; i < size - 1; i++) { // O(n)
+            array[i] = array[i + 1]; // O(1)
         }
         size--;
         return removed;
@@ -189,9 +196,9 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public boolean removeAll(Collection<?> collection) {
         boolean flag = true;
-        for (Object obj : collection) {
-            flag &= remove(obj);
-        }
+        for (Object obj : collection) { // collection 요소가 m개면 O(m)
+            flag &= remove(obj); // 제거할 요소가 n개면 remove()가 선형이므로 O(n)
+        } // => O(mn)
         return flag;
     }
 
@@ -201,10 +208,10 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public T set(int index, T element) {
+    public T set(int index, T element) { // 최종: O(1)
         // TODO: set 해당 인덱스 위치에 새로운 요소를 넣고 기존 요소를 반환한다.
-        T old = get(index);
-        array[index] = element;
+        T old = get(index); // -> O(1)
+        array[index] = element; // -> O(1)
         return old;
     }
 

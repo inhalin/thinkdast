@@ -8,7 +8,10 @@
   - 자바의 List 인터페이스의 구현체로 MyArrayList 구현
     - remove(), set()의 경우 명시적으로 배열 범위를 검사하지 않고 get()을 이용
     - 참고 https://docs.oracle.com/javase/8/docs/api/java/util/List.html
-- [ ] 3장 ArrayList 클래스
+- [x] 3장 ArrayList 클래스
+  - 2장에서 구현한 MyArrayList 메서드들의 알고리즘 분류
+  - 분할 상환 분석 amortized analysis
+  - 문제 크기에 대해 분석할 때는 대상이 어떤 크기인지를 주의해야 한다.
 - [ ] 4장 LinkedList 클래스
 - [ ] 5장 이중 연결 리스트
 - [ ] 6장 트리 순회
