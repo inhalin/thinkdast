@@ -12,7 +12,9 @@
   - 2장에서 구현한 MyArrayList 메서드들의 알고리즘 분류
   - 분할 상환 분석 amortized analysis
   - 문제 크기에 대해 분석할 때는 대상이 어떤 크기인지를 주의해야 한다.
-- [ ] 4장 LinkedList 클래스
+- [x] 4장 LinkedList 클래스
+  - add(index, element), indexOf(element), remove(index) 메서드 구현
+  - 테스트 코드 작성
 - [ ] 5장 이중 연결 리스트
 - [ ] 6장 트리 순회
 - [ ] 7장 철학으로 가는 길
